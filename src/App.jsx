@@ -20,20 +20,20 @@ const App = () => {
 
   return (
     <Container>
-    <Navbar isAuth={isAuth} setIsAuth={setIsAuth} profile={profile} setProfile={setProfile} />
-    <Tabs tabPadding="xl" sx={{ marginTop: "2rem" }}>
-        <Tabs.Tab label="All" sx={{padding: "20px 75px" }}>
-          <TabLayout />
-          <TodoItems show="all" />
-        </Tabs.Tab>
-        <Tabs.Tab label="Active" sx={{padding: "20px 75px" }}>
-          <TabLayout />
-          <TodoItems show="active" />
-        </Tabs.Tab>
-        <Tabs.Tab label="Completed" sx={{padding: "20px 75px" }}>
-          <TabLayout />
-          <TodoItems show="completed" />
-        </Tabs.Tab>
+      <Navbar isAuth={isAuth} setIsAuth={setIsAuth} profile={profile} setProfile={setProfile} />
+      <Tabs tabPadding="xl" sx={{ marginTop: "2rem" }}>
+          <Tabs.Tab label="All" sx={{padding: "20px 75px" }}>
+            <TabLayout uid={profile.uid} />
+            <TodoItems show="all" uid={profile.uid} />
+          </Tabs.Tab>
+          <Tabs.Tab label="Active" sx={{padding: "20px 75px" }}>
+            <TabLayout uid={profile.uid} />
+            <TodoItems show="active" uid={profile.uid} />
+          </Tabs.Tab>
+          <Tabs.Tab label="Completed" sx={{padding: "20px 75px" }}>
+            <TabLayout uid={profile.uid} />
+            <TodoItems show="completed" uid={profile.uid} />
+          </Tabs.Tab>
       </Tabs>
     </Container>
   );

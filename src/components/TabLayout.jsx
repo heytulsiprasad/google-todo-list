@@ -1,9 +1,9 @@
 import Input from "./Input"
 
-const TabLayout = ({ children }) => {
+const TabLayout = ({ children, uid }) => {
   return (
     <>
-      <Input />
+      <Input uid={uid} />
       {children}
     </>
   )

@@ -1,4 +1,8 @@
+import { useState } from "react"
 import styled from "styled-components"
+import { serverTimestamp, addDoc, collection } from "firebase/firestore"
+
+import { db } from "../config/firebase"
 
 const InputContainer = styled.form`
   display: flex;
@@ -11,13 +15,14 @@ const StyledInput = styled.input`
   height: 56px;
   border: 1px solid #BDBDBD;
   border-radius: 12px;
+  padding-left: 20px;  
 
   ::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #828282;  
-    padding-left: 20px;  
+    /* padding-left: 20px;   */
   }
 `
 
@@ -37,10 +42,28 @@ const StyledButton = styled.button`
   }
 `
 
-const Input = () => {
+const Input = ({ uid }) => {
+  const [value, setValue] = useState("");
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setValue("");
+
+    const todo = {
+      title: value,
+      completed: false,
+      createdAt: serverTimestamp()
+    }
+
+    if (value && value !== "" && uid) {
+      const docRef = await addDoc(collection(db, `users/${uid}/todos`), todo)
+      console.log("Added todo: ", docRef.id);
+    }
+  }
+
   return (
-    <InputContainer>
-      <StyledInput type="text" placeholder="add details" />
+    <InputContainer onSubmit={handleSubmit}>
+      <StyledInput type="text" placeholder="add details" value={value} onChange={e => setValue(e.target.value)} />
       <StyledButton type="submit">
         <span>Add</span>
       </StyledButton>
