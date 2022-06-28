@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components";
 import { Tabs } from '@mantine/core';
 
@@ -14,9 +15,12 @@ const Container = styled.main`
 `
 
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false);
+  const [profile, setProfile] = useState({});
+
   return (
     <Container>
-    <Navbar />
+    <Navbar isAuth={isAuth} setIsAuth={setIsAuth} profile={profile} setProfile={setProfile} />
     <Tabs tabPadding="xl" sx={{ marginTop: "2rem" }}>
         <Tabs.Tab label="All" sx={{padding: "20px 75px" }}>
           <TabLayout />
