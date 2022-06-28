@@ -3,6 +3,7 @@ import { Tabs } from '@mantine/core';
 
 import TabLayout from "./components/TabLayout";
 import TodoItems from "./components/TodoItems"
+import Navbar from "./components/Navbar";
 
 const Container = styled.main`
   padding: 2rem;
@@ -15,7 +16,7 @@ const Container = styled.main`
 const App = () => {
   return (
     <Container>
-    <h1>#todo</h1>
+    <Navbar />
     <Tabs tabPadding="xl" sx={{ marginTop: "2rem" }}>
         <Tabs.Tab label="All" sx={{padding: "20px 75px" }}>
           <TabLayout />
